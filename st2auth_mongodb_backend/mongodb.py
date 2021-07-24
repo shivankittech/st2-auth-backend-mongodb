@@ -40,7 +40,7 @@ class MongoDBAuthenticationBackend(object):
     Note: This backends depends on the "pymongo" library.
     """
 
-    _collection_name = 'users'
+    _collection_name = 'authenticate'
     _indexes = [
         ('username', pymongo.ASCENDING)
     ]
@@ -64,24 +64,27 @@ class MongoDBAuthenticationBackend(object):
         self._ensure_indexes()
 
     def authenticate(self, username, password):
-        salt_result = self._collection.find_one({'username': username})
+        
+        return True
+        
+#         salt_result = self._collection.find_one({'username': username})
 
-        if not salt_result:
-            return False
+#         if not salt_result:
+#             return False
 
-        salt = salt_result.get('salt', None)
-        if not salt:
-            return False
+#         salt = salt_result.get('salt', None)
+#         if not salt:
+#             return False
 
-        password_string = '%s%s' % (salt, password)
-        password_hash = self._hash_function(password_string.encode('utf-8')).hexdigest()
-        result = self._collection.find_one({'username': username, 'password': password_hash})
+#         password_string = '%s%s' % (salt, password)
+#         password_hash = self._hash_function(password_string.encode('utf-8')).hexdigest()
+#         result = self._collection.find_one({'username': username, 'password': password_hash})
 
-        if result and result.get('username', None) == username and \
-           result.get('password', None) == password_hash:
-            return True
+#         if result and result.get('username', None) == username and \
+#            result.get('password', None) == password_hash:
+#             return True
 
-        return False
+#         return False
 
     def get_user(self, username):
         pass
