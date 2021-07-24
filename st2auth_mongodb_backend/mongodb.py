@@ -54,6 +54,8 @@ class MongoDBAuthenticationBackend(object):
         self._db_username = db_username
         self._db_password = db_password
 
+        LOG.info('Initialising MongoDB authentication plugin.')
+
 #         self._client = MongoClient(host=self._db_host, port=self._db_port, tz_aware=True)
 #         self._db = self._client[db_name]
 
@@ -64,7 +66,8 @@ class MongoDBAuthenticationBackend(object):
 #         self._ensure_indexes()
 
     def authenticate(self, username, password):
-        
+
+        LOG.info('Successfully authenticated user "%s".', username)
         return True
         
 #         salt_result = self._collection.find_one({'username': username})
