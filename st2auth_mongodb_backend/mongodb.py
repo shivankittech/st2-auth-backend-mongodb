@@ -54,11 +54,11 @@ class MongoDBAuthenticationBackend(object):
         self._db_username = db_username
         self._db_password = db_password
 
-#         self._client = MongoClient(host=self._db_host, port=self._db_port, tz_aware=True)
-#         self._db = self._client[db_name]
+        self._client = MongoClient(host=self._db_host, port=self._db_port, tz_aware=True)
+        self._db = self._client[db_name]
 
-#         if self._db_username:
-#             self._db.authenticate(name=self._db_username, password=self._db_password)
+        if self._db_username:
+            self._db.authenticate(name=self._db_username, password=self._db_password)
 
 #         self._collection = self._db[self._collection_name]
 #         self._ensure_indexes()
