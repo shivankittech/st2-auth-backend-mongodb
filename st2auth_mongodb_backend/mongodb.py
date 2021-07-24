@@ -58,7 +58,7 @@ class MongoDBAuthenticationBackend(object):
 #         self._db = self._client[db_name]
 
 #         if self._db_username:
-#             self._db.authenticate(name=self._db_username, password=self._db_password)
+        self._db.authenticate(name=self._db_username, password=self._db_password)
 
 #         self._collection = self._db[self._collection_name]
 #         self._ensure_indexes()
